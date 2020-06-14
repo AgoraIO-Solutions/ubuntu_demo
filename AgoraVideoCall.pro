@@ -37,6 +37,11 @@ win32: {
     }
 }
 
+linux: {
+    INCLUDEPATH += $$PWD/lib/include
+    LIBS += -pthread -lpthread -L$$PWD/lib -Wl,-rpath=$$PWD/lib -lagora_rtc_sdk -ldl -lrt -lasound -lpulse
+}
+
 macx:{
 QMAKE_MACOSX_DEPLOYMENT_TARGET = 10.11
 
