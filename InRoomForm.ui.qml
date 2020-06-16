@@ -1,10 +1,11 @@
 import QtQuick 2.5
+import QtMultimedia 5.0
 import "./controls"
 
 Rectangle {
     id: rectangleRoom
-    width: 800
-    height: 800
+    width: 1000
+    property alias titleBar: titleBar
     property alias rectangleRoom: rectangleRoom
     property alias btnSettingsCall: btnSettings
     property alias btnVoiceCall: btnVoice
@@ -12,7 +13,7 @@ Rectangle {
     property alias btnExpandView: btnExpandView
     property alias btnEndCall: btnEndCall
     property int maxViewWidth: rectangleRoom.width
-    property int maxViewHeight: rectangleRoom.height-titleBar.height-rectToolbar.height
+    property int maxViewHeight: rectangleRoom.height - titleBar.height - rectToolbar.height
     ATitleBar {
         id: titleBar
         width: parent.width
@@ -23,96 +24,112 @@ Rectangle {
     property alias channelName: channelName
     Text {
         id: channelName
-        x: 342
         y: 50
         width: 100
-        color: "#ffffff"
+        color: "#000000"
         text: qsTr("")
+        anchors.left: parent.left
+        anchors.leftMargin: 60
         font.bold: true
         z: 1
-        anchors.horizontalCenter: parent.horizontalCenter
         anchors.top: titleBar.bottom
         anchors.topMargin: 20
-        font.pixelSize: 14
+        font.pixelSize: 16
+    }
+
+    property alias moviePlayer: moviePlayer
+    AVideoView {
+        id: moviePlayer
+        color: "#424242"
+        anchors.right: localVideo.left
+        anchors.rightMargin: 4
+        anchors.left: parent.left
+        anchors.leftMargin: 4
+        anchors.bottom: rectToolbar.top
+        anchors.bottomMargin: 4
+        anchors.top: channelName.bottom
+        anchors.topMargin: 4
+        showVideo: true
     }
 
     property alias localVideo: localVideo
     AVideoView {
         id: localVideo
-        showVideo: true
-        width: rectangleRoom.maxViewWidth
-        height: rectangleRoom.maxViewHeight
-        backgroundImage: "images/icon_background_video.png"
-        anchors.top: titleBar.bottom
-        anchors.topMargin: 0
+        x: 0
+        y: 0
+        width: 190
+        height: 100
         anchors.right: parent.right
-        anchors.rightMargin: 0
+        anchors.rightMargin: 4
+        anchors.top: channelName.bottom
+        anchors.topMargin: 4
+        showVideo: true
+        backgroundImage: "images/icon_background_video.png"
     }
     property alias remoteVideo1: remoteVideo1
     AVideoView {
         id: remoteVideo1
-        visible: false
+        width: 190
+        height: 100
         showVideo: false
         z: 1
-        width: rectangleRoom.maxViewWidth/4
-        height: rectangleRoom.maxViewHeight/4
         backgroundImage: "images/icon_background_video.png"
-        anchors.top: titleBar.bottom
-        anchors.topMargin: 0
+        anchors.top: localVideo.bottom
+        anchors.topMargin: 4
         anchors.right: parent.right
-        anchors.rightMargin: 0
+        anchors.rightMargin: 4
     }
 
     property alias remoteVideo2: remoteVideo2
     AVideoView {
         id: remoteVideo2
-        visible: false
+        width: 190
+        height: 100
         showVideo: false
         z: 1
-        width: rectangleRoom.maxViewWidth/4
-        height: rectangleRoom.maxViewHeight/4
+        anchors.topMargin: 4
         backgroundImage: "images/icon_background_video.png"
-        anchors.top: titleBar.bottom
-        anchors.topMargin: rectangleRoom.maxViewHeight/4
+        anchors.top: remoteVideo1.bottom
         anchors.right: parent.right
-        anchors.rightMargin: 0
+        anchors.rightMargin: 4
     }
 
     property alias remoteVideo3: remoteVideo3
     AVideoView {
         id: remoteVideo3
-        visible: false
+        width: 190
         showVideo: false
         z: 1
-        width: rectangleRoom.maxViewWidth/4
-        height: rectangleRoom.maxViewHeight/4
+        height: 100
+        visible: true
+        anchors.topMargin: 4
         backgroundImage: "images/icon_background_video.png"
-        anchors.top: titleBar.bottom
-        anchors.topMargin: rectangleRoom.maxViewHeight/2
+        anchors.top: remoteVideo2.bottom
         anchors.right: parent.right
-        anchors.rightMargin: 0
+        anchors.rightMargin: 4
     }
 
     property alias remoteVideo4: remoteVideo4
     AVideoView {
         id: remoteVideo4
+        width: 190
         visible: false
         showVideo: false
         z: 1
-        width: rectangleRoom.maxViewWidth/4
-        height: rectangleRoom.maxViewHeight/4
+        anchors.bottom: rectToolbar.top
+        anchors.bottomMargin: 4
+        anchors.topMargin: 4
         backgroundImage: "images/icon_background_video.png"
-        anchors.top: titleBar.bottom
-        anchors.topMargin: rectangleRoom.maxViewHeight*3/4
+        anchors.top: remoteVideo3.bottom
         anchors.right: parent.right
-        anchors.rightMargin: 0
+        anchors.rightMargin: 4
     }
 
     Rectangle {
         id: rectToolbar
         x: 0
         width: parent.width
-        height: 96
+        height: 60
         color: "#262626"
         anchors.bottom: parent.bottom
         anchors.bottomMargin: 0
@@ -188,5 +205,22 @@ Rectangle {
         }
     }
 
+    Text {
+        id: element
+        text: qsTr("Samsung/Agora Watch Together")
+        anchors.left: channelName.right
+        anchors.leftMargin: 12
+        anchors.top: titleBar.bottom
+        anchors.topMargin: 20
+        font.pixelSize: 16
+    }
 }
+
+/*##^##
+Designer {
+    D{i:2;anchors_x:342}D{i:3;anchors_height:480;anchors_width:640;anchors_x:0;anchors_y:48}
+D{i:4;anchors_width:200}D{i:7;anchors_height:100}D{i:15;anchors_height:200;anchors_width:200;anchors_x:28;anchors_y:91}
+D{i:9;anchors_height:200;anchors_width:200;anchors_x:28;anchors_y:91}D{i:16;anchors_x:219;anchors_y:36}
+}
+##^##*/
 

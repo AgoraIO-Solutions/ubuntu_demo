@@ -120,6 +120,7 @@ Rectangle {
         width: 300
         height: 1
         color: "#c8c8c8"
+        visible: false
         anchors.top: btnJoin.bottom
         anchors.topMargin: 23
     }
@@ -130,6 +131,7 @@ Rectangle {
         width: 300
         height: 48
         text: qsTr("1920x1080, 15fps, 3mbps")
+        visible: false
         defaultColor: "#009eed"
         hoverColor: "#71caf5"
         pressedColor: "#1c1c1c"
