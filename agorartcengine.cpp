@@ -56,7 +56,7 @@ AgoraRtcEngine::AgoraRtcEngine(QObject *parent) : QObject(parent)
 {
     agora::rtc::RtcEngineContext context;
     context.eventHandler = m_eventHandler.get();
-    context.appId = "";//Specify your APP ID here
+    context.appId = "8e20929d8e4342b495e1acf092c44abd";//Specify your APP ID here
     if (*context.appId == '\0')
     {
         QMessageBox::critical(nullptr, tr("Agora QT Demo"),

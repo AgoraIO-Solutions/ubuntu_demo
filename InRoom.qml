@@ -7,6 +7,7 @@ InRoomForm {
     property bool isVideoViewNormal: true
     property bool isVoiceMuted: false
     property var views:[]
+    property var videoId
 
     btnEndCall.onClicked: {
         agoraRtcEngine.setupLocalVideo(null)
@@ -95,17 +96,26 @@ InRoomForm {
         }
     }
     function handleUserJoined(uid) {
-        //check if the user is already binded
-        var view = inroom.findRemoteView(uid)
-//        console.log("handle user joined for user " + uid + " view " + view)
-        if (view !== undefined)
-            return
-        //find a free view to bind
-        view = inroom.findRemoteView(0)
-//        console.log("foud free view " + view + "to bind")
-        if (view && agoraRtcEngine.setupRemoteVideo(uid, view.videoWidget) === 0) {
-//            console.log("bind view view " + view + "for user" + uid)
-            inroom.bindView(uid, view)
+        var view
+        if(uid === 9999){
+            moviePlayer.uid = 9999
+            moviePlayer.showVideo = true
+            moviePlayer.visible = true
+            agoraRtcEngine.setupRemoteVideo(uid, moviePlayer.videoWidget)
+            inroom.bindView(uid, moviePlayer)
+        }
+        else{
+            view = inroom.findRemoteView(uid)
+            console.log("handle user joined for user " + uid + " view " + view)
+            if (view !== undefined)
+                return
+//            find a free view to bind
+            view = inroom.findRemoteView(0)
+            console.log("foud free view " + view + "to bind")
+            if (view && agoraRtcEngine.setupRemoteVideo(uid, view.videoWidget) === 0) {
+                console.log("bind view view " + view + "for user" + uid)
+                inroom.bindView(uid, view)
+            }
         }
     }
 
@@ -160,3 +170,9 @@ InRoomForm {
         return true
     }
 }
+
+/*##^##
+Designer {
+    D{i:0;autoSize:true;height:480;width:640}
+}
+##^##*/
