@@ -2,7 +2,7 @@ TEMPLATE = app
 
 QT += core quickwidgets
 CONFIG += c++11
-
+CONFIG += qzxing_qml
 SOURCES += main.cpp \
     agorartcengine.cpp \
     mainwindow.cpp \
@@ -11,13 +11,13 @@ SOURCES += main.cpp \
     video_render_impl.cpp
 
 RESOURCES += qml.qrc
-
+CONFIG += enable_encoder_qr_code
 # Additional import path used to resolve QML modules in Qt Creator's code model
 QML_IMPORT_PATH =
 
 # Default rules for deployment.
 include(deployment.pri)
-
+include(src/QZXing-components.pri)
 HEADERS += \
     agorartcengine.h \
     mainwindow.h \
