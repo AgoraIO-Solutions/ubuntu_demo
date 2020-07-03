@@ -14,11 +14,8 @@ Item {
         focus: true
         anchors.fill: parent
     }
-
-
     Component.onCompleted: {
-        joinRoom()
-//        splashPage()
+        splashPage()
     }
     function joinChannel(channel) {
         if (channel.length > 0 && agoraRtcEngine.joinChannel("", channel, 0) === 0) {
@@ -45,7 +42,7 @@ Item {
         loader.setSource(Qt.resolvedUrl("JoinRoom.qml"))
     }
     function splashPage() {
-        loader.setSource(Qt.resolvedUrl("qr.qml"))
+        loader.setSource(Qt.resolvedUrl("Splash.qml"))
     }
 
     function getVideoResolutionText() {

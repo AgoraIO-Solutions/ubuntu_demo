@@ -6,7 +6,6 @@
 #include <QApplication>
 #include <QDesktopWidget>
 #include "video_render_opengl.h"
-#include "QZXing.h"
 
 MainWindow::MainWindow(QWidget *parent)
     :QWidget(parent)
@@ -67,19 +66,5 @@ void MainWindow::openDeviceSettings()
     form->setResizeMode(QQuickWidget::SizeRootObjectToView);
     form->setSource(QUrl("qrc:///DeviceSettings.qml"));
 
-    form->show();
-}
-
-void MainWindow::openQRCode()
-{
-    QString data = "test";
-    QImage qrCode = QZXing::encodeData(data);
-    QQuickWidget* form = new QQuickWidget(this);
-    form->setAttribute(Qt::WA_DeleteOnClose);
-    form->setWindowFlags(Qt::Window | Qt::FramelessWindowHint);
-    form->setFixedSize(512, 640);
-    form->rootContext()->setContextProperty("QRCode", form);
-    form->setResizeMode(QQuickWidget::SizeRootObjectToView);
-    form->setSource(QUrl("qrc:///qr.qml"));
     form->show();
 }

@@ -14,7 +14,6 @@ public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
     Q_INVOKABLE void openDeviceSettings();
-    Q_INVOKABLE void openQRCode();
 public slots:
     void joiningChannel();
     void leavingChannel();

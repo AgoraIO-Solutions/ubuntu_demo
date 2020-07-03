@@ -41,6 +41,8 @@
         <file>images/btn_window_minimize_push.png</file>
         <file>images/btn_window_minimize_touch.png</file>
         <file>controls/ATitleBar.qml</file>
+        <file>Splash.qml</file>
+        <file>SplashForm.ui.qml</file>
         <file>DeviceSettings.qml</file>
         <file>DeviceSettingsForm.ui.qml</file>
         <file>controls/ADragArea.qml</file>
@@ -49,6 +51,5 @@
         <file>images/btn_restore_push.png</file>
         <file>images/btn_restore_touch.png</file>
         <file>images/btn_restore.png</file>
-        <file>qr.qml</file>
     </qresource>
 </RCC>

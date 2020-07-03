@@ -27,7 +27,20 @@ InRoomForm {
             btnMuteVoice.pressedImageSource = "images/btn_mute_close_push.png"
         }
     }
-    btnVoiceCall.onClicked: main.splashPage()
+    btnVoiceCall.onClicked: {
+        isVideoEnabled = !isVideoEnabled
+        main.enableVideo(isVideoEnabled)
+        if (isVideoEnabled) {
+            btnVoiceCall.defaultImageSource = "images/btn_voice.png"
+            btnVoiceCall.hoverImageSource = "images/btn_voice_touch.png"
+            btnVoiceCall.pressedImageSource = "images/btn_voice_push.png"
+        } else {
+            btnVoiceCall.defaultImageSource = "images/btn_video.png"
+            btnVoiceCall.hoverImageSource = "images/btn_video_touch.png"
+            btnVoiceCall.pressedImageSource = "images/btn_video_push.png"
+            localVideo.showVideo = isVideoEnabled
+        }
+    }
     btnExpandView.onClicked: {
         isVideoViewNormal = !isVideoViewNormal
         if (isVideoViewNormal) {
