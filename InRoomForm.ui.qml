@@ -162,9 +162,9 @@ Rectangle {
                 anchors.verticalCenter: parent.verticalCenter
                 anchors.left: btnSettings.right
                 anchors.leftMargin: 48
-                defaultImageSource: "images/btn_voice.png"
-                hoverImageSource: "images/btn_voice_touch.png"
-                pressedImageSource: "images/btn_voice_push.png"
+                defaultImageSource: "images/btn_qr.png"
+                hoverImageSource: "images/btn_qr.png"
+                pressedImageSource: "images/btn_qr.png"
             }
 
             AImageButton {

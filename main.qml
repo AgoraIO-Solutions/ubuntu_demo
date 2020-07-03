@@ -44,6 +44,9 @@ Item {
     function splashPage() {
         loader.setSource(Qt.resolvedUrl("Splash.qml"))
     }
+    function showQr() {
+        loader.setSource(Qt.resolvedUrl("qr.qml"))
+    }
 
     function getVideoResolutionText() {
         switch (videoResolution) {

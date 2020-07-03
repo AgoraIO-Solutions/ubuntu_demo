@@ -51,5 +51,7 @@
         <file>images/btn_restore_push.png</file>
         <file>images/btn_restore_touch.png</file>
         <file>images/btn_restore.png</file>
+        <file>qr.qml</file>
+        <file>images/btn_qr.png</file>
     </qresource>
 </RCC>
