@@ -36,7 +36,6 @@ Rectangle {
         anchors.topMargin: 20
         font.pixelSize: 16
     }
-
     property alias moviePlayer: moviePlayer
     AVideoView {
         id: moviePlayer
@@ -213,6 +212,28 @@ Rectangle {
         anchors.top: titleBar.bottom
         anchors.topMargin: 20
         font.pixelSize: 16
+    }
+
+    property alias cbStreams: cbStreams
+    AComboBox {
+        id: cbStreams
+        x: 668
+        y: 34
+        width: 300
+        height: 29
+        visible: true
+        anchors.bottom: localVideo.top
+        anchors.bottomMargin: 4
+        anchors.right: parent.right
+        anchors.rightMargin: 32
+        anchors.topMargin: 11
+        model: ListModel {
+            id: playList
+            ListElement {
+                text: " "
+            }
+        }
+        editable: false
     }
 }
 

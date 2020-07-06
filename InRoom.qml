@@ -6,8 +6,10 @@ InRoomForm {
     property bool isVideoEnabled: true
     property bool isVideoViewNormal: true
     property bool isVoiceMuted: false
-    property var views:[]
+    property var views: []
     property var videoId
+    property var curMovieUid
+    property var movies: []
 
     btnEndCall.onClicked: {
         agoraRtcEngine.setupLocalVideo(null)
@@ -29,6 +31,7 @@ InRoomForm {
     }
     btnVoiceCall.onClicked: {
         main.showQr()
+//        nextMovie()
     }
     btnExpandView.onClicked: {
         isVideoViewNormal = !isVideoViewNormal
@@ -65,6 +68,15 @@ InRoomForm {
     remoteVideo4.onDoubleClicked: {
         inroom.maximizeView(remoteVideo4)
     }
+    cbStreams.onActivated: {
+        var new_id = cbStreams.model.get(cbStreams.currentIndex).uid
+        if(curMovieUid !== new_id){
+            console.log("switch to stream: "+ new_id)
+            stopMovie()
+            curMovieUid = new_id
+            renderMovie()
+        }
+    }
 
     Connections {
         target: agoraRtcEngine
@@ -84,14 +96,33 @@ InRoomForm {
                 inroom.unbindView(uid, view)
         }
     }
+
+    function stopMovie(){
+        var view = inroom.views[4]
+        agoraRtcEngine.setupRemoteVideo(curMovieUid, view.videoWidget)
+        inroom.bindView(curMovieUid, view)
+    }
+
+    function renderMovie(){
+        moviePlayer.uid = curMovieUid
+        moviePlayer.showVideo = true
+        moviePlayer.visible = true
+        agoraRtcEngine.setupRemoteVideo(curMovieUid, moviePlayer.videoWidget)
+        inroom.bindView(curMovieUid, moviePlayer)
+    }
+
     function handleUserJoined(uid) {
         var view
         if(uid === 9999){
-            moviePlayer.uid = 9999
-            moviePlayer.showVideo = true
-            moviePlayer.visible = true
-            agoraRtcEngine.setupRemoteVideo(uid, moviePlayer.videoWidget)
-            inroom.bindView(uid, moviePlayer)
+            curMovieUid = uid
+            renderMovie()
+        }
+
+        if(uid > 9990){
+            if(movies.indexOf(uid) == -1){
+                cbStreams.model.append({text: "Movie ID: "+uid, uid: uid})
+                movies.push(uid)
+            }
         }
         else{
             view = inroom.findRemoteView(uid)
