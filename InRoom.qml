@@ -1,5 +1,6 @@
 import QtQuick 2.5
 
+
 InRoomForm {
     id: inroom
     anchors.fill: parent
@@ -30,8 +31,9 @@ InRoomForm {
         }
     }
     btnVoiceCall.onClicked: {
-        main.showQr()
+//        main.showQr()
 //        nextMovie()
+        qrWindow.show()
     }
     btnExpandView.onClicked: {
         isVideoViewNormal = !isVideoViewNormal
@@ -77,6 +79,8 @@ InRoomForm {
             renderMovie()
         }
     }
+
+
 
     Connections {
         target: agoraRtcEngine

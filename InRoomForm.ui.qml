@@ -1,5 +1,7 @@
 import QtQuick 2.5
+import QtQuick.Window 2.15
 import QtMultimedia 5.0
+import QtWebEngine 1.0
 import "./controls"
 
 Rectangle {
@@ -234,6 +236,30 @@ Rectangle {
             }
         }
         editable: false
+    }
+
+    property alias qrWindow: qrWindow
+    Window {
+        width: 400
+        height: 400
+        id: qrWindow
+        visible: false
+
+        Rectangle {
+            id: barcodeRectangle
+            border.width: 1
+            border.color: "#bdbebf"
+            clip: true
+            color: "white"
+
+            WebEngineView {
+                width: 300
+                height: 300
+                id:webview
+                anchors.fill: parent
+                url: "https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=" + main.channelName
+            }
+        }
     }
 }
 
