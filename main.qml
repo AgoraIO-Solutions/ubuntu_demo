@@ -16,6 +16,7 @@ Item {
     }
     Component.onCompleted: {
         splashPage()
+//        showQr()
     }
     function joinChannel(channel) {
         if (channel.length > 0 && agoraRtcEngine.joinChannel("", channel, 0) === 0) {
@@ -43,6 +44,9 @@ Item {
     }
     function splashPage() {
         loader.setSource(Qt.resolvedUrl("Splash.qml"))
+    }
+    function showQr() {
+        loader.setSource(Qt.resolvedUrl("qr.qml"))
     }
 
     function getVideoResolutionText() {

@@ -1,5 +1,7 @@
 import QtQuick 2.5
+import QtQuick.Window 2.15
 import QtMultimedia 5.0
+import QtWebEngine 1.0
 import "./controls"
 
 Rectangle {
@@ -36,7 +38,6 @@ Rectangle {
         anchors.topMargin: 20
         font.pixelSize: 16
     }
-
     property alias moviePlayer: moviePlayer
     AVideoView {
         id: moviePlayer
@@ -162,9 +163,9 @@ Rectangle {
                 anchors.verticalCenter: parent.verticalCenter
                 anchors.left: btnSettings.right
                 anchors.leftMargin: 48
-                defaultImageSource: "images/btn_voice.png"
-                hoverImageSource: "images/btn_voice_touch.png"
-                pressedImageSource: "images/btn_voice_push.png"
+                defaultImageSource: "images/btn_qr.png"
+                hoverImageSource: "images/btn_qr.png"
+                pressedImageSource: "images/btn_qr.png"
             }
 
             AImageButton {
@@ -213,6 +214,44 @@ Rectangle {
         anchors.top: titleBar.bottom
         anchors.topMargin: 20
         font.pixelSize: 16
+    }
+
+    property alias cbStreams: cbStreams
+    AComboBox {
+        id: cbStreams
+        x: 668
+        y: 34
+        width: 300
+        height: 29
+        visible: true
+        anchors.bottom: localVideo.top
+        anchors.bottomMargin: 4
+        anchors.right: parent.right
+        anchors.rightMargin: 32
+        anchors.topMargin: 11
+        model: ListModel {
+            id: playList
+            ListElement {
+                text: " "
+            }
+        }
+        editable: false
+    }
+
+    property alias qrWindow: qrWindow
+    Window {
+        width: 400
+        height: 400
+        id: qrWindow
+        visible: false
+
+        WebEngineView {
+            width: 300
+            height: 300
+            id:webview
+            anchors.fill: parent
+            url: "https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=" + main.channelName
+        }
     }
 }
 
