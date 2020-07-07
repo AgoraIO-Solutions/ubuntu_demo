@@ -118,6 +118,9 @@ public class MainActivity extends BaseActivity {
             case R.id.action_settings:
                 forwardToSettings();
                 return true;
+            case R.id.action_settings_scan:
+                onclickScan(item.getActionView());
+                return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
@@ -180,6 +183,12 @@ public class MainActivity extends BaseActivity {
             String scanResult = bundle.getString(Constant.INTENT_EXTRA_KEY_QR_SCAN);
             EditText v_channel = findViewById(R.id.channel_name);
             v_channel.setText(scanResult);
+
+
+            Intent i = new Intent(MainActivity.this, CallActivity.class);
+            i.putExtra(ConstantApp.ACTION_KEY_CHANNEL_NAME, scanResult);
+            i.putExtra(ConstantApp.ACTION_KEY_ENCRYPTION_MODE, getResources().getStringArray(R.array.encryption_mode_values)[vSettings().mEncryptionModeIndex]);
+            startActivity(i);
         }
     }
 
@@ -189,7 +198,7 @@ public class MainActivity extends BaseActivity {
         switch (requestCode) {
             case Constant.REQ_PERM_CAMERA:
                 if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                    onclickScan(this.findViewById(R.id.btnScan));
+                    onclickScan(this.findViewById(R.id.channel_name));
                 } else {
                     Toast.makeText(MainActivity.this, "请至权限中心打开本应用的相机访问权限", Toast.LENGTH_LONG).show();
                 }
