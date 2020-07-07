@@ -16,6 +16,7 @@ Item {
     }
     Component.onCompleted: {
         splashPage()
+//        showQr()
     }
     function joinChannel(channel) {
         if (channel.length > 0 && agoraRtcEngine.joinChannel("", channel, 0) === 0) {

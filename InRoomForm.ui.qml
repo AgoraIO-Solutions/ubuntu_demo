@@ -245,20 +245,12 @@ Rectangle {
         id: qrWindow
         visible: false
 
-        Rectangle {
-            id: barcodeRectangle
-            border.width: 1
-            border.color: "#bdbebf"
-            clip: true
-            color: "white"
-
-            WebEngineView {
-                width: 300
-                height: 300
-                id:webview
-                anchors.fill: parent
-                url: "https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=" + main.channelName
-            }
+        WebEngineView {
+            width: 300
+            height: 300
+            id:webview
+            anchors.fill: parent
+            url: "https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=" + main.channelName
         }
     }
 }
